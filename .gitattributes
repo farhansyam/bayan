@@ -1,0 +1,4 @@
+* text=auto eol=lf
+# Preserve source snapshots, licenses, fonts and the supplied logo byte-for-byte.
+data/** -text
+assets/** -text
