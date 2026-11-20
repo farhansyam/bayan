@@ -16,12 +16,11 @@ const { pathToFileURL } = require("node:url");
 // Test profiles and an explicit --user-data-dir still take precedence.
 app.setName("Bayan");
 const profileOverride = app.commandLine.getSwitchValue("user-data-dir");
-app.setPath(
-  "userData",
-  profileOverride
-    ? path.resolve(profileOverride)
-    : path.join(app.getPath("appData"), "sisip-ayat"),
-);
+const userDataPath = profileOverride
+  ? path.resolve(profileOverride)
+  : path.join(app.getPath("appData"), "sisip-ayat");
+require("node:fs").mkdirSync(userDataPath, { recursive: true });
+app.setPath("userData", userDataPath);
 if (process.platform === "win32") app.setAppUserModelId("id.sisipayat.app");
 let win;
 let stateQueue = Promise.resolve();
