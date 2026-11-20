@@ -16,7 +16,11 @@ const launch = (executablePath) =>
   electron.launch({
     ...(executablePath ? { executablePath } : {}),
     args: [...(executablePath ? [] : ["."]), `--user-data-dir=${profile}`],
-    env: { ...process.env, ELECTRON_RUN_AS_NODE: "" },
+    env: Object.fromEntries(
+      Object.entries(process.env).filter(
+        ([key]) => key.toUpperCase() !== "ELECTRON_RUN_AS_NODE",
+      ),
+    ),
   });
 let app;
 try {

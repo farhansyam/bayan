@@ -13,8 +13,8 @@
     "test": "node --test tests/*.test.js",
     "validate": "node scripts/validate-data.js && node scripts/validate-hadith.js",
     "pack": "npm run build && electron-builder --dir",
-    "dist:mac": "npm run build && electron-builder --mac dmg",
-    "dist:win": "npm run build && electron-builder --win nsis --x64",
+    "dist:mac": "npm run build && electron-builder --mac dmg --publish never",
+    "dist:win": "npm run build && electron-builder --win nsis --x64 --publish never",
     "test:desktop": "node scripts/smoke-electron.js",
     "test:features": "node scripts/smoke-features.js",
     "test:upgrade": "node scripts/smoke-upgrade.js"
