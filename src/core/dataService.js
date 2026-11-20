@@ -2,6 +2,21 @@ import meta from "../../data/surah-meta.json" with { type: "json" };
 import arabic from "../../data/quran-uthmani.json" with { type: "json" };
 import translation from "../../data/terjemahan-kemenag.json" with { type: "json" };
 export const surahs = meta;
+const openingBasmalah = arabic[0].verses[0].text;
+const lettersOnly = (text) => text.replace(/\p{M}/gu, "");
+// Tanzil stores the opening basmalah inside ayah 1. Keep that source string
+// intact, and expose losslessly separated presentation parts (including 95/97).
+function openingParts(surah, verse) {
+  if (surah === 1 || surah === 9 || verse.id !== 1) return {};
+  const match = verse.text.match(/^(\S+\s+\S+\s+\S+\s+\S+)(\s+)([\s\S]+)$/u);
+  if (!match || lettersOnly(match[1]) !== lettersOnly(openingBasmalah))
+    return {};
+  return {
+    basmalah: match[1],
+    basmalahSeparator: match[2],
+    arabicBody: match[3],
+  };
+}
 export function getVerses(surah, start = 1, end = meta[surah - 1]?.count) {
   const s = meta[surah - 1];
   if (!s) throw new Error("Nomor surah harus antara 1 dan 114.");
@@ -16,13 +31,12 @@ export function getVerses(surah, start = 1, end = meta[surah - 1]?.count) {
     throw new Error(`${s.name} hanya memiliki ${s.count} ayat.`);
   if (end < start)
     throw new Error("Sampai ayat tidak boleh lebih kecil dari Dari ayat.");
-  return arabic[surah - 1].verses
-    .slice(start - 1, end)
-    .map((v) => ({
-      id: v.id,
-      arabic: v.text,
-      translation: translation[surah - 1].verses[v.id - 1].text,
-    }));
+  return arabic[surah - 1].verses.slice(start - 1, end).map((v) => ({
+    id: v.id,
+    arabic: v.text,
+    ...openingParts(surah, v),
+    translation: translation[surah - 1].verses[v.id - 1].text,
+  }));
 }
 export const normalize = (text) =>
   text

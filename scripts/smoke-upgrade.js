@@ -3,6 +3,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import os from "node:os";
 import assert from "node:assert/strict";
+import packageInfo from "../package.json" with { type: "json" };
 import { defaults } from "../src/core/formatter.js";
 const previous = process.argv[2];
 if (!previous) throw new Error("Supply the previous Sisip Ayat executable.");
@@ -60,7 +61,7 @@ try {
   page = await application.firstWindow();
   await page.waitForSelector(".welcome");
   const info = await page.evaluate(() => window.sisip.appInfo());
-  assert.equal(info.version, "0.3.0");
+  assert.equal(info.version, packageInfo.version);
   assert.equal(info.dataPath, oldPath);
   assert.equal(await application.evaluate(({ app }) => app.name), "Bayan");
   const state = await page.evaluate(() => window.sisip.readState());

@@ -50,3 +50,11 @@ Paket akhir 0.2.0: NSIS Windows x64 sekitar 129 MB dan DMG Apple Silicon sekitar
 - Tes migrasi memakai executable Sisip Ayat 0.2.0: impor PDF, edit metadata dan arsip, simpan setelan/riwayat, lalu buka profil yang sama dengan Bayan 0.3.0. Jalur, ID, setelan, riwayat, isi PDF, metadata dan status arsip tetap sama.
 - Nama folder cadangan baru `Bayan-Cadangan-...`; pemulihan membaca indeks dan PDF sehingga cadangan lama tetap didukung.
 - Pengujian instalasi/upgrade NSIS pada Windows target dan signing installer tetap terpisah dari uji kompatibilitas format data.
+
+# Bayan 0.3.1 — pemisahan basmalah
+
+- Basmalah pembuka ditampilkan/disalin sebagai paragraf Arab tersendiri tanpa nomor, sebelum ayat 1; mode per ayat maupun satu blok memakai pemisahan yang sama.
+- Seluruh 112 pembuka diuji secara otomatis, termasuk variasi harakat sumber pada At-Tin (95) dan Al-Qadr (97). Penggabungan kembali bagian dengan spasi sumber sama persis dengan teks asli. JSON sumber dan checksum tidak diubah.
+- Al-Fatihah 1:1 tetap basmalah bernomor 1; At-Taubah tidak ditambah basmalah; basmalah di tengah An-Naml 27:30 tidak dipecah; rentang mulai ayat 2 dan seterusnya tidak ditambah pembuka.
+- HTML, RTF dan teks polos memiliki paragraf basmalah terpisah. Mode terjemahan saja tidak menambah teks Arab.
+- 14 tes inti dan alur Electron Al-Qur’an/hadis/perpustakaan lolos. Screenshot `tests/basmalah.png` memperlihatkan Al-Baqarah 1 dengan basmalah di atas ayat, tanpa nomor pembuka.

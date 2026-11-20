@@ -31,6 +31,24 @@ try {
   assert.match(clip.text, /QS. Al-Baqarah: 255/);
   assert.match(clip.html, /dir="rtl"/);
   assert.match(clip.html, /font-size:20pt/);
+  await input.fill("2:1");
+  await page.locator(".basmalah").waitFor();
+  const opening = await page.locator(".basmalah").textContent();
+  assert.ok(
+    !(await page.locator(".verse .arabic").textContent()).includes(opening),
+  );
+  await page.getByRole("button", { name: /Salin ayat|Tersalin/ }).click();
+  const splitText = await app.evaluate(({ clipboard }) => clipboard.readText());
+  assert.equal(splitText.split("\n\n")[0], opening);
+  await page.screenshot({ path: "tests/basmalah.png" });
+  for (const q of ["1:1", "9:1", "27:30"]) {
+    await input.fill(q);
+    assert.equal(await page.locator(".basmalah").count(), 0);
+  }
+  for (const q of ["95:1", "97:1"]) {
+    await input.fill(q);
+    assert.equal(await page.locator(".basmalah").count(), 1);
+  }
   await input.fill("2:255-257");
   assert.equal(await page.locator(".verse").count(), 3);
   await page.screenshot({ path: "tests/preview.png" });

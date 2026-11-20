@@ -115,5 +115,75 @@ test("RTF preserves Unicode and explicitly separates paragraph directions", () =
   const decoded = out.rtf.replace(/\\u(-?\d+)\?/g, (_, n) =>
     String.fromCharCode(+n < 0 ? +n + 65536 : +n),
   );
-  assert.ok(decoded.includes(r.verses[0].arabic));
+  assert.ok(decoded.includes(r.verses[0].basmalah));
+  assert.ok(decoded.includes(r.verses[0].arabicBody));
+});
+test("all 112 opening basmalahs are separated losslessly without renumbering verses", async () => {
+  const { default: source } = await import("../data/quran-uthmani.json", {
+    with: { type: "json" },
+  });
+  let separated = 0;
+  for (const chapter of source) {
+    const r = parseQuery(`${chapter.id}:1`),
+      verse = r.verses[0];
+    assert.equal(verse.arabic, chapter.verses[0].text);
+    assert.equal(verse.id, 1);
+    if (chapter.id === 1 || chapter.id === 9) {
+      assert.equal(verse.basmalah, undefined);
+      assert.equal(verse.arabicBody, undefined);
+      continue;
+    }
+    assert.ok(verse.basmalah, `Missing basmalah for surah ${chapter.id}`);
+    assert.equal(
+      verse.basmalah + verse.basmalahSeparator + verse.arabicBody,
+      verse.arabic,
+    );
+    assert.ok(verse.arabicBody.length > 0);
+    separated++;
+    for (const group of ["verse", "block"]) {
+      const out = formatOutput(r, {
+        ...defaults,
+        group,
+        reference: false,
+        content: "arabic",
+      });
+      assert.deepEqual(out.text.split("\n\n"), [
+        verse.basmalah,
+        `${verse.arabicBody} ﴿١﴾`,
+      ]);
+      assert.equal((out.html.match(/<p /g) || []).length, 2);
+      assert.ok(out.html.includes("text-align:center"));
+      const decoded = out.rtf.replace(/\\u(-?\d+)\?/g, (_, n) =>
+        String.fromCharCode(+n < 0 ? +n + 65536 : +n),
+      );
+      assert.ok(decoded.includes(verse.basmalah + "\\par"));
+      assert.ok(decoded.includes(verse.arabicBody));
+    }
+  }
+  assert.equal(separated, 112);
+});
+test("basmalah is only an unnumbered Arabic opening, not added to later ranges or translation-only output", () => {
+  for (const q of ["2:2-3", "9:1", "27:30", "1:2"])
+    assert.equal(parseQuery(q).verses[0].basmalah, undefined, q);
+  const r = parseQuery("2:1-3");
+  assert.deepEqual(
+    r.verses.map((v) => v.id),
+    [1, 2, 3],
+  );
+  const out = formatOutput(r, {
+    ...defaults,
+    content: "translation",
+    reference: false,
+  });
+  assert.ok(!out.text.includes(r.verses[0].basmalah));
+  assert.ok(out.text.startsWith("Ayat 1. "));
+  const fatihah = parseQuery("1:1"),
+    fa = formatOutput(fatihah, {
+      ...defaults,
+      content: "arabic",
+      reference: false,
+    });
+  assert.equal(fa.text, `${fatihah.verses[0].arabic} ﴿١﴾`);
+  const naml = parseQuery("27:30");
+  assert.ok(formatOutput(naml, defaults).text.includes(naml.verses[0].arabic));
 });

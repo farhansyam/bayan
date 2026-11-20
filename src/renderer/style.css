@@ -1734,3 +1734,9 @@ html[data-theme="dark"] .search-wrap {
   left: -48.6%;
   top: -34.3%;
 }
+.basmalah {
+  text-align: center;
+  padding: 20px 0;
+  margin: 8px 0;
+  border-bottom: 1px solid var(--line);
+}

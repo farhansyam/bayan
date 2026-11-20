@@ -36,7 +36,7 @@ export function formatOutput(result, options) {
     ? o.font
     : "Traditional Arabic";
   const arabic = (v) =>
-    v.arabic +
+    (v.arabicBody ?? v.arabic) +
     (o.numbers
       ? result.kind === "hadith"
         ? ` (${v.id})`
@@ -46,8 +46,8 @@ export function formatOutput(result, options) {
     (o.numbers
       ? `${result.kind === "hadith" ? "Hadis" : "Ayat"} ${v.id}. `
       : "") + v.translation;
-  const pAr = (text) =>
-    `<p dir="rtl" lang="ar" style="direction:rtl;unicode-bidi:embed;text-align:right;font-family:'${font}','Amiri',serif;mso-bidi-font-family:'${font}';font-size:${ar}pt;line-height:1.9;margin:0 0 12pt">${escapeHTML(text)}</p>`;
+  const pAr = (text, alignment = "right") =>
+    `<p dir="rtl" lang="ar" style="direction:rtl;unicode-bidi:embed;text-align:${alignment};font-family:'${font}','Amiri',serif;mso-bidi-font-family:'${font}';font-size:${ar}pt;line-height:1.9;margin:0 0 12pt">${escapeHTML(text)}</p>`;
   const pTr = (text) =>
     `<p dir="ltr" lang="id" style="direction:ltr;text-align:left;font-family:'Segoe UI',Arial,sans-serif;font-size:${tr}pt;line-height:1.6;margin:0 0 12pt">${escapeHTML(text)}</p>`;
   const groups =
@@ -67,10 +67,16 @@ export function formatOutput(result, options) {
           .join("");
       })
       .join("");
-  const rAr = (text) =>
-    `\\pard\\rtlpar\\qr\\sa240\\sl${Math.round(ar * 20 * 1.9)}\\slmult0\\f0\\fs${ar * 2}\\lang1025\\rtlch ${rtfEscape(text)}\\par`;
+  const rAr = (text, alignment = "right") =>
+    `\\pard\\rtlpar${alignment === "center" ? "\\qc" : "\\qr"}\\sa240\\sl${Math.round(ar * 20 * 1.9)}\\slmult0\\f0\\fs${ar * 2}\\lang1025\\rtlch ${rtfEscape(text)}\\par`;
   const rTr = (text) =>
     `\\pard\\ltrpar\\ql\\sa240\\sl${Math.round(tr * 20 * 1.6)}\\slmult0\\f1\\fs${tr * 2}\\lang1057\\ltrch ${rtfEscape(text)}\\par`;
+  const basmalah = result.verses[0]?.basmalah;
+  if (basmalah && o.content !== "translation") {
+    blocks.push(pAr(basmalah, "center"));
+    rich.push(rAr(basmalah, "center"));
+    plain.push(basmalah);
+  }
   for (const group of groups) {
     if (o.content !== "translation") {
       const text = group.map(arabic).join(" ");

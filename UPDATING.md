@@ -1,9 +1,9 @@
 # Memperbarui ke Bayan di Windows
 
-## Dari Sisip Ayat 0.1/0.2 ke Bayan 0.3.0
+## Dari Sisip Ayat 0.1/0.2 ke Bayan 0.3.1
 
 1. Tutup aplikasi Sisip Ayat yang sedang berjalan.
-2. Jalankan `Bayan-0.3.0-win-x64.exe` di akun Windows yang sama.
+2. Jalankan `Bayan-0.3.1-win-x64.exe` di akun Windows yang sama.
 3. Installer memperbarui aplikasi yang sudah ada. Tidak perlu menghapus versi lama terlebih dahulu.
 4. Buka Bayan dari pintasan aplikasi. Al-Qur’an, Hadis, dan Perpustakaan & Sirah tetap tersedia.
 
@@ -25,4 +25,4 @@ PDF yang diimpor disalin ke penyimpanan aplikasi. File asal tetap berada di loka
 
 ## Status pengujian
 
-Kompatibilitas data diuji dengan membuka profil dari executable 0.1.0 menggunakan versi 0.2.0, serta memulai ulang versi baru setelah mengimpor dan mengedit PDF. Perpindahan Sisip Ayat 0.2.0 ke Bayan 0.3.0 juga diuji pada executable lama dengan setelan, riwayat, metadata, status arsip, dan isi PDF tetap sama. Installer Windows dibuat dari macOS dan belum diuji pemasangan langsung di Windows. Periksa hasil tempel pada Word/PowerPoint versi komputer tujuan. Installer prarilis belum ditandatangani digital.
+Kompatibilitas data diuji dengan membuka profil dari executable 0.1.0 menggunakan versi 0.2.0, serta memulai ulang versi baru setelah mengimpor dan mengedit PDF. Perpindahan Sisip Ayat 0.2.0 ke Bayan 0.3.1 juga diuji pada executable lama dengan setelan, riwayat, metadata, status arsip, dan isi PDF tetap sama. Installer Windows dibuat dari macOS dan belum diuji pemasangan langsung di Windows. Periksa hasil tempel pada Word/PowerPoint versi komputer tujuan. Installer prarilis belum ditandatangani digital.

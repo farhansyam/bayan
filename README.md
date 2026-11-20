@@ -1,4 +1,4 @@
-# Bayan 0.3.0
+# Bayan 0.3.1
 
 Bayan (sebelumnya Sisip Ayat) adalah aplikasi desktop Electron untuk Al-Qur’an, hadis offline, dan perpustakaan PDF pribadi. Kutipan Arab dan terjemahan dapat disalin ke Word/PowerPoint sebagai teks Unicode yang dapat diedit. Data, font pratinjau, setelan, riwayat, dan PDF disimpan di perangkat. Aplikasi terkemas memblokir permintaan jaringan.
 
@@ -15,7 +15,7 @@ Pintasan menggunakan Cmd di macOS dan Ctrl di Windows: K cari, Enter salin. Pada
 
 ## Pembaruan Windows
 
-**Tutup aplikasi, jalankan installer versi baru di akun Windows yang sama, lalu buka kembali. Tidak perlu uninstall.** Bayan 0.3.0 mempertahankan appId dan folder data `sisip-ayat` milik Sisip Ayat 0.1/0.2 agar pembaruan tetap membaca data lama. Setelan, riwayat dan PDF pribadi berada di luar folder instalasi. Installer lengkap berfungsi untuk memperbarui aplikasi; belum ada patch kecil atau auto-update. Lihat [UPDATING.md](UPDATING.md) untuk cadangan dan perpindahan komputer.
+**Tutup aplikasi, jalankan installer versi baru di akun Windows yang sama, lalu buka kembali. Tidak perlu uninstall.** Bayan 0.3.1 mempertahankan appId dan folder data `sisip-ayat` milik Sisip Ayat 0.1/0.2 agar pembaruan tetap membaca data lama. Setelan, riwayat dan PDF pribadi berada di luar folder instalasi. Installer lengkap berfungsi untuk memperbarui aplikasi; belum ada patch kecil atau auto-update. Lihat [UPDATING.md](UPDATING.md) untuk cadangan dan perpindahan komputer.
 
 ## Pengembangan
 
@@ -68,3 +68,5 @@ Lihat [data/NOTICE.md](data/NOTICE.md), [data/provenance.json](data/provenance.j
 Struktur: `src/main` Electron, IPC dan penyimpanan PDF; `src/core` parser/data/formatter/hadis; `src/renderer` UI React; `data` snapshot; `assets/fonts` font dan lisensi. Renderer diisolasi dan sandboxed tanpa Node.js. Tidak ada auto-insert Office, audio, akun atau telemetri.
 
 Logo Bayan disediakan oleh pemilik proyek dan digunakan dari `assets/bayan-logo.png`. PNG sumber dipertahankan tanpa perubahan; konversi ikon Windows/macOS dilakukan oleh electron-builder saat pengemasan.
+
+Perbaikan 0.3.1: basmalah pembuka dipisahkan ke paragraf tersendiri tanpa nomor pada pratinjau serta clipboard HTML/RTF/teks polos. Berlaku saat rentang mencakup ayat pertama, termasuk mode satu blok. Basmalah Al-Fatihah tetap ayat 1; At-Taubah tidak ditambah basmalah. Teks sumber JSON tidak diubah.
