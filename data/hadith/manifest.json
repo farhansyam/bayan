@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "source": "https://github.com/gadingnst/hadith-api",
+  "commit": "8e15b4f9e7585822426a0d470e8dfec27e2a1707",
+  "retrieved": "2026-11-20T10:42:31.400644+00:00",
+  "upstreamClaim": "tafsirq.com",
+  "license": "MIT (repository); upstream translation rights and scholarly verification not independently confirmed",
+  "books": [
+    {
+      "id": "bukhari",
+      "name": "Bukhari",
+      "count": 6638,
+      "first": 1,
+      "last": 7008,
+      "sha256": "65e7a48f8ae0b792e3f8374f9de3e45d3119a1fdb5b6322aa6182db585348bb8",
+      "source": "https://raw.githubusercontent.com/gadingnst/hadith-api/8e15b4f9e7585822426a0d470e8dfec27e2a1707/books/bukhari.json"
+    },
+    {
+      "id": "muslim",
+      "name": "Muslim",
+      "count": 4930,
+      "first": 1,
+      "last": 5362,
+      "sha256": "c9dcee026176991c52c955628c7242f60a7ffafbb714c2cd387b14759bb89a71",
+      "source": "https://raw.githubusercontent.com/gadingnst/hadith-api/8e15b4f9e7585822426a0d470e8dfec27e2a1707/books/muslim.json"
+    },
+    {
+      "id": "abu-daud",
+      "name": "Abu Daud",
+      "count": 4419,
+      "first": 1,
+      "last": 4590,
+      "sha256": "b0efbb33a11aed7db639dc6e35f2bafc9882056fe113efca078c536051f74891",
+      "source": "https://raw.githubusercontent.com/gadingnst/hadith-api/8e15b4f9e7585822426a0d470e8dfec27e2a1707/books/abu-daud.json"
+    },
+    {
+      "id": "tirmidzi",
+      "name": "Tirmidzi",
+      "count": 3625,
+      "first": 1,
+      "last": 3891,
+      "sha256": "91a70b0c36dcfc8e1cba248ae66fdd00075790f98eda2a8abcdbd72ee22b90fd",
+      "source": "https://raw.githubusercontent.com/gadingnst/hadith-api/8e15b4f9e7585822426a0d470e8dfec27e2a1707/books/tirmidzi.json"
+    },
+    {
+      "id": "nasai",
+      "name": "Nasai",
+      "count": 5364,
+      "first": 1,
+      "last": 5662,
+      "sha256": "8114350778730353e5ff7a78cf4fdd2242610390160898efbc4bd7c537555560",
+      "source": "https://raw.githubusercontent.com/gadingnst/hadith-api/8e15b4f9e7585822426a0d470e8dfec27e2a1707/books/nasai.json"
+    },
+    {
+      "id": "ibnu-majah",
+      "name": "Ibnu Majah",
+      "count": 4285,
+      "first": 1,
+      "last": 4331,
+      "sha256": "6ba481a76454a075282b4bc499c43d450596402be1a39762a1fa654321778531",
+      "source": "https://raw.githubusercontent.com/gadingnst/hadith-api/8e15b4f9e7585822426a0d470e8dfec27e2a1707/books/ibnu-majah.json"
+    },
+    {
+      "id": "ahmad",
+      "name": "Ahmad",
+      "count": 4305,
+      "first": 1,
+      "last": 26363,
+      "sha256": "61cbd6b3fe8805982204f92598412fdc2241cbb4290ea2109fb9c53621f23258",
+      "source": "https://raw.githubusercontent.com/gadingnst/hadith-api/8e15b4f9e7585822426a0d470e8dfec27e2a1707/books/ahmad.json"
+    },
+    {
+      "id": "darimi",
+      "name": "Darimi",
+      "count": 2949,
+      "first": 1,
+      "last": 3367,
+      "sha256": "001408d019769e20615803a1f6ee6ee5b484e3d5128dd5b356fc9d510eae2089",
+      "source": "https://raw.githubusercontent.com/gadingnst/hadith-api/8e15b4f9e7585822426a0d470e8dfec27e2a1707/books/darimi.json"
+    },
+    {
+      "id": "malik",
+      "name": "Malik",
+      "count": 1587,
+      "first": 1,
+      "last": 1594,
+      "sha256": "bcd98f0230734921b00cafff253c2b52b0a1326efef7ef91fc5879468fde7edf",
+      "source": "https://raw.githubusercontent.com/gadingnst/hadith-api/8e15b4f9e7585822426a0d470e8dfec27e2a1707/books/malik.json"
+    }
+  ]
+}

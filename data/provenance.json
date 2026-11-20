@@ -1,0 +1,14 @@
+{
+  "retrieved": "2026-11-20T09:42:56.851666+00:00",
+  "arabicSource": "https://quran-json.risanb.com/text/uthmani/quran.json",
+  "arabicUpstream": "https://tanzil.net",
+  "translationSource": "https://equran.id/api/v2/surat/{1-114}",
+  "translationClaim": "Kemenag via EQuran.id; edition not independently confirmed",
+  "translationLicense": "Redistribution permission not independently confirmed; review before public release",
+  "manualReview": "Pending: 50 verses and mandatory popular passages against official print/source",
+  "sha256": {
+    "quran-uthmani.json": "c15c5c057674be8e8273b425c98a65309dd626f63d79987941b6f9211e05061b",
+    "terjemahan-kemenag.json": "cca0a0b94c7afbbe97092012f559977fbe5365b1f6d55386f8c9d5f65de9a872",
+    "surah-meta.json": "6d0e127cf19df8b08be3a018918d5f803a410c5407d1480b9e60ecd732293798"
+  }
+}
